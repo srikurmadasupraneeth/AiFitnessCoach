@@ -23,13 +23,16 @@ const LightningIcon = (props: any) => (
 export default function Navbar() {
   const { colorMode, toggleColorMode } = useColorMode();
 
-  // Fix: Stronger background opacity in dark mode to prevent blending
+  // Background: High opacity to prevent blending
   const bg = useColorModeValue(
     "rgba(255, 255, 255, 0.95)",
-    "rgba(15, 23, 42, 0.95)" // Slightly lighter than pure black #0b1220 for contrast
+    "rgba(15, 23, 42, 0.95)"
   );
   const borderColor = useColorModeValue("gray.200", "gray.700");
   const logoColor = useColorModeValue("purple.600", "purple.400");
+
+  // FIX: Explicitly set text color to contrast with the background
+  const textColor = useColorModeValue("gray.800", "white");
 
   return (
     <Box
@@ -50,7 +53,7 @@ export default function Navbar() {
           <Box color={logoColor}>
             <LightningIcon boxSize={6} />
           </Box>
-          <Heading size="md" letterSpacing="-0.5px">
+          <Heading size="md" letterSpacing="-0.5px" color={textColor}>
             AI Fitness Coach
           </Heading>
         </HStack>
@@ -64,6 +67,7 @@ export default function Navbar() {
           variant="ghost"
           size="sm"
           rounded="full"
+          color={textColor}
         />
       </Flex>
     </Box>
